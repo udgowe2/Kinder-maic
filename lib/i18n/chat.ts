@@ -145,3 +145,27 @@ export const chatEnUS = {
     stopListening: 'Stop recording',
   },
 } as const;
+
+export const chatDeDE = {
+  chat: {
+    placeholder: 'Stelle eine Frage oder gib ein Thema ein...',
+    send: 'Senden',
+    thinking: 'Denkt nach...',
+    error: 'Etwas ist schiefgelaufen. Bitte versuche es erneut.',
+    retry: 'Erneut versuchen',
+    copy: 'Kopieren',
+    copied: 'Kopiert!',
+    regenerate: 'Neu generieren',
+    stopGeneration: 'Generierung stoppen',
+    newChat: 'Neues Gespräch',
+    clearHistory: 'Verlauf löschen',
+    clearHistoryConfirm: 'Möchtest du den gesamten Gesprächsverlauf löschen?',
+    inputHint: 'Was möchtest du heute lernen?',
+    topicSuggestion: 'Themenvorschläge',
+    uploadPdf: 'PDF hochladen',
+    pdfUploaded: 'PDF hochgeladen',
+    generateLesson: 'Unterricht erstellen',
+    generatingLesson: 'Unterricht wird erstellt...',
+    lessonReady: 'Dein Unterricht ist bereit!',
+  },
+} as const;

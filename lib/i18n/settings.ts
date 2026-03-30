@@ -1184,3 +1184,33 @@ export const settingsEnUS = {
     language: 'Language',
   },
 } as const;
+
+export const settingsDeDE = {
+  settings: {
+    title: 'Einstellungen',
+    save: 'Speichern',
+    saved: 'Gespeichert!',
+    cancel: 'Abbrechen',
+    language: 'Sprache',
+    theme: 'Design',
+    themeLight: 'Hell',
+    themeDark: 'Dunkel',
+    themeSystem: 'Systemstandard',
+    model: 'KI-Modell',
+    apiKey: 'API-Schlüssel',
+    apiKeyPlaceholder: 'API-Schlüssel eingeben...',
+    apiKeySaved: 'API-Schlüssel gespeichert',
+    tts: 'Sprachausgabe',
+    ttsProvider: 'Sprachausgabe-Anbieter',
+    ttsVoice: 'Stimme',
+    ttsSpeed: 'Sprechgeschwindigkeit',
+    ttsTest: 'Stimme testen',
+    pdfParser: 'PDF-Parser',
+    webSearch: 'Internetsuche',
+    webSearchProvider: 'Suchanbieter',
+    reset: 'Einstellungen zurücksetzen',
+    resetConfirm: 'Möchtest du alle Einstellungen zurücksetzen?',
+    about: 'Über diese App',
+    aboutText: 'Kinder-MAIC – Interaktiver KI-Unterricht für Kinder in Zürich, basierend auf dem Lehrplan 21.',
+  },
+} as const;

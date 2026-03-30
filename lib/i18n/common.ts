@@ -79,3 +79,44 @@ export const commonEnUS = {
     exportFailed: 'Export failed',
   },
 } as const;
+
+export const commonDeDE = {
+  common: {
+    you: 'Du',
+    confirm: 'Bestätigen',
+    cancel: 'Abbrechen',
+    loading: 'Wird geladen...',
+  },
+  home: {
+    slogan: 'Interaktiver KI-Unterricht basierend auf dem Lehrplan 21',
+    greeting: 'Hallo, ',
+  },
+  toolbar: {
+    languageHint: 'Der Kurs wird in dieser Sprache erstellt',
+    pdfParser: 'Parser',
+    pdfUpload: 'PDF hochladen',
+    removePdf: 'Datei entfernen',
+    webSearchOn: 'Aktiviert',
+    webSearchOff: 'Zum Aktivieren klicken',
+    webSearchDesc: 'Sucht vor der Erstellung im Internet nach aktuellen Informationen',
+    webSearchProvider: 'Suchmaschine',
+    webSearchNoProvider: 'Bitte Such-API-Schlüssel in den Einstellungen konfigurieren',
+    selectProvider: 'Anbieter auswählen',
+    configureProvider: 'Modell einrichten',
+    configureProviderHint: 'Bitte mindestens einen Modellanbieter konfigurieren',
+    enterClassroom: 'Unterricht beginnen',
+    advancedSettings: 'Erweiterte Einstellungen',
+    ttsTitle: 'Sprachausgabe',
+    ttsHint: 'Stimme für den KI-Lehrer auswählen',
+    ttsPreview: 'Vorschau',
+    ttsPreviewing: 'Wird abgespielt...',
+  },
+  export: {
+    pptx: 'Als PPTX exportieren',
+    resourcePack: 'Lernpaket exportieren',
+    resourcePackDesc: 'PPTX + interaktive Seiten',
+    exporting: 'Wird exportiert...',
+    exportSuccess: 'Export erfolgreich',
+    exportFailed: 'Export fehlgeschlagen',
+  },
+} as const;
