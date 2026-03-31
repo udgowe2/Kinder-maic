@@ -1,3 +1,9 @@
+
+This opens a simple text editor. Scroll to the bottom and add these lines:
+```
+# Allow pre-built files for NAS deployment
+!.next/
+!.next/**
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 CLAUDE.local.md
