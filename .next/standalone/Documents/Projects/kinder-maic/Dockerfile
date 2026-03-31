@@ -1,32 +1,6 @@
-# ---- Stage 1: Base ----
-FROM node:22-alpine AS base
+# ---- Optimised for NAS: pre-built on Mac ----
+# Build runs on Mac (pnpm build), NAS just runs the result
 
-RUN apk add --no-cache libc6-compat
-RUN corepack enable && corepack prepare pnpm@10.28.0 --activate
-
-WORKDIR /app
-
-# ---- Stage 2: Dependencies ----
-FROM base AS deps
-
-# Native build tools for sharp, @napi-rs/canvas
-RUN apk add --no-cache python3 build-base g++ cairo-dev pango-dev jpeg-dev giflib-dev librsvg-dev
-
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-COPY packages/ ./packages/
-
-RUN pnpm install --frozen-lockfile
-
-# ---- Stage 3: Builder ----
-FROM base AS builder
-
-COPY --from=deps /app/node_modules ./node_modules
-COPY --from=deps /app/packages ./packages
-COPY . .
-
-RUN pnpm build
-
-# ---- Stage 4: Runner ----
 FROM node:22-alpine AS runner
 
 WORKDIR /app
@@ -40,9 +14,10 @@ RUN apk add --no-cache libc6-compat cairo pango jpeg giflib librsvg
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
-COPY --from=builder /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+# Copy pre-built files directly
+COPY --chown=nextjs:nodejs public ./public
+COPY --chown=nextjs:nodejs .next/standalone ./
+COPY --chown=nextjs:nodejs .next/static ./.next/static
 
 USER nextjs
 
