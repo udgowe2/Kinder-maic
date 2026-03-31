@@ -1,6 +1,7 @@
 import { defaultLocale, type Locale } from './types';
 export { type Locale, defaultLocale } from './types';
 import { commonZhCN, commonEnUS, commonDeDE } from './common';
+// @ts-ignore
 import { stageZhCN, stageEnUS, stageDeDE } from './stage';
 import { chatZhCN, chatEnUS, chatDeDE } from './chat';
 import { generationZhCN, generationEnUS, generationDeDE } from './generation';

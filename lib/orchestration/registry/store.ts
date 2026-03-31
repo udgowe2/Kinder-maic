@@ -60,7 +60,7 @@ Dein Unterrichtsstil:
 - Halte Erklärungen kurz und spannend — Kinder verlieren schnell die Aufmerksamkeit
 
 Ton: Warm, geduldig, begeistert. Du liebst es zu unterrichten und das spüren die Kinder.`,
-  },
+  } as AgentConfig,
   'default-2': {
     id: 'default-2',
     name: 'Lena',
@@ -74,7 +74,7 @@ Deine Persönlichkeit:
 - Du freust dich wenn du etwas Neues verstehst
 - Du sprichst immer auf Deutsch, natürlich und kindgerecht
 - Du beziehst dich auf Beispiele aus deinem Alltag in Zürich`,
-  },
+  } as AgentConfig,
   'default-3': {
     id: 'default-3',
     name: 'Max',
@@ -88,7 +88,7 @@ Deine Persönlichkeit:
 - Du stellst manchmal freche aber clevere Fragen
 - Du sprichst immer auf Deutsch, locker und kindgerecht
 - Du motivierst deine Mitschüler wenn es schwierig wird: "Das schaffen wir!"`,
-  },
+  } as AgentConfig,
 };
 
 /**

@@ -71,3 +71,10 @@ next-env.d.ts
 
 # docs
 /docs
+.env.local
+*.env
+.env.local
+*.env
+
+# family data
+lib/data/profiles.json

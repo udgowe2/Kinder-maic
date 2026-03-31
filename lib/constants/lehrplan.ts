@@ -49,6 +49,13 @@ export const LEHRPLAN_SUBJECTS: LehrplanSubject[] = [
     zyklus2: 'lehrplan-pdfs/zyklus-2/nmg-z2.pdf',
   },
   {
+    id: 'medien-informatik',
+    name: 'Medien & Informatik',
+    emoji: '💻',
+    zyklus2: 'lehrplan-pdfs/module/medien-informatik.pdf',
+    zyklus3: 'lehrplan-pdfs/module/medien-informatik.pdf',
+  },
+  {
     id: 'natur-technik',
     name: 'Natur & Technik',
     emoji: '🔬',
@@ -71,14 +78,7 @@ export const LEHRPLAN_SUBJECTS: LehrplanSubject[] = [
     name: 'Wirtschaft, Arbeit, Haushalt',
     emoji: '🏠',
     zyklus3: 'lehrplan-pdfs/zyklus-3/wah-z3.pdf',
-  },
-  {
-    id: 'medien-informatik',
-    name: 'Medien & Informatik',
-    emoji: '💻',
-    zyklus2: 'lehrplan-pdfs/module/medien-informatik.pdf',
-    zyklus3: 'lehrplan-pdfs/module/medien-informatik.pdf',
-  },
+  }
 ];
 
 /**

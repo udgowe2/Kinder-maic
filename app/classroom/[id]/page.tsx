@@ -12,6 +12,7 @@ import { useWhiteboardHistoryStore } from '@/lib/store/whiteboard-history';
 import { createLogger } from '@/lib/logger';
 import { MediaStageProvider } from '@/lib/contexts/media-stage-context';
 import { generateMediaForOutlines } from '@/lib/media/media-orchestrator';
+import { useProfilesStore } from '@/lib/store/profiles';
 
 const log = createLogger('Classroom');
 
@@ -26,9 +27,17 @@ export default function ClassroomDetailPage() {
 
   const generationStartedRef = useRef(false);
 
+  const { recordLessonCompletion } = useProfilesStore();
+
   const { generateRemaining, retrySingleOutline, stop } = useSceneGenerator({
     onComplete: () => {
       log.info('[Classroom] All scenes generated');
+      // Increment the child's streak and add the lesson to their history
+      try {
+          recordLessonCompletion(classroomId, 100);
+      } catch (err) {
+          console.error("Failed to record lesson completion", err);
+      }
     },
   });
 
