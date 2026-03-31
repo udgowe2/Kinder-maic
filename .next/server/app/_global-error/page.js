@@ -1,0 +1,11 @@
+var R=require("../../chunks/ssr/[turbopack]_runtime.js")("server/app/_global-error/page.js")
+R.c("server/chunks/ssr/[root-of-the-server]__7790d17e._.js")
+R.c("server/chunks/ssr/Documents_Projects_kinder-maic_e0974c98._.js")
+R.c("server/chunks/ssr/8b5ba_next_dist_7c2033b0._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__f55ed697._.js")
+R.c("server/chunks/ssr/65942__pnpm_935d27c2._.js")
+R.c("server/chunks/ssr/65942__pnpm_59e334fa._.js")
+R.c("server/chunks/ssr/Documents_Projects_kinder-maic_app_c4310b70._.js")
+R.c("server/chunks/ssr/9e65a_kinder-maic__next-internal_server_app__global-error_page_actions_cb4d6161.js")
+R.m(23800)
+module.exports=R.m(23800).exports

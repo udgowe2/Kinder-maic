@@ -1,0 +1,35 @@
+[
+  {
+    "id": "1",
+    "name": "Ahmad",
+    "geburtsdatum": "2013-02-19",
+    "avatar": "😊",
+    "farbe": "#4A90E2",
+    "completedLessons": [],
+    "quizScores": {},
+    "streakDays": 0,
+    "lastLoginDate": ""
+  },
+  {
+    "id": "2",
+    "name": "Anas",
+    "geburtsdatum": "2014-11-28",
+    "avatar": "😊",
+    "farbe": "#F5A623",
+    "completedLessons": [],
+    "quizScores": {},
+    "streakDays": 0,
+    "lastLoginDate": ""
+  },
+  {
+    "id": "3",
+    "name": "Amina",
+    "geburtsdatum": "2016-10-29",
+    "avatar": "🌸",
+    "farbe": "#E27BAF",
+    "completedLessons": [],
+    "quizScores": {},
+    "streakDays": 0,
+    "lastLoginDate": ""
+  }
+]

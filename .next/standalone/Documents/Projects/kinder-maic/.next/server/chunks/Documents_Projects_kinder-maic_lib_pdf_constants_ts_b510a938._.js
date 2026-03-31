@@ -1,0 +1,3 @@
+module.exports=[967261,e=>{"use strict";e.s(["PDF_PROVIDERS",0,{unpdf:{id:"unpdf",name:"unpdf",requiresApiKey:!1,icon:"/logos/unpdf.svg",features:["text","images","metadata"]},mineru:{id:"mineru",name:"MinerU",requiresApiKey:!1,icon:"/logos/mineru.png",features:["text","images","tables","formulas","layout-analysis"]}}])}];
+
+//# sourceMappingURL=Documents_Projects_kinder-maic_lib_pdf_constants_ts_b510a938._.js.map

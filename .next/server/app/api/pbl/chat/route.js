@@ -1,0 +1,11 @@
+var R=require("../../../../chunks/[turbopack]_runtime.js")("server/app/api/pbl/chat/route.js")
+R.c("server/chunks/[root-of-the-server]__e6c0008e._.js")
+R.c("server/chunks/Documents_Projects_kinder-maic_lib_ai_providers_ts_a65b1ef3._.js")
+R.c("server/chunks/Documents_Projects_kinder-maic_lib_server_provider-config_ts_cd109587._.js")
+R.c("server/chunks/[root-of-the-server]__aa44f81e._.js")
+R.c("server/chunks/dac9d_undici_851f6128._.js")
+R.c("server/chunks/65942__pnpm_0f24ce41._.js")
+R.c("server/chunks/65942__pnpm_af525cce._.js")
+R.c("server/chunks/9e65a_kinder-maic__next-internal_server_app_api_pbl_chat_route_actions_6f463151.js")
+R.m(787802)
+module.exports=R.m(787802).exports

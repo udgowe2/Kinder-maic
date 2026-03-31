@@ -1,0 +1,10 @@
+var R=require("../../../chunks/[turbopack]_runtime.js")("server/app/api/transcription/route.js")
+R.c("server/chunks/[root-of-the-server]__71b6c454._.js")
+R.c("server/chunks/Documents_Projects_kinder-maic_lib_server_provider-config_ts_cd109587._.js")
+R.c("server/chunks/8b5ba_next_dist_esm_build_templates_app-route_5218d267.js")
+R.c("server/chunks/65942__pnpm_af525cce._.js")
+R.c("server/chunks/65942__pnpm_0f24ce41._.js")
+R.c("server/chunks/[root-of-the-server]__aa44f81e._.js")
+R.c("server/chunks/9e65a_kinder-maic__next-internal_server_app_api_transcription_route_actions_8a2d363b.js")
+R.m(925139)
+module.exports=R.m(925139).exports
