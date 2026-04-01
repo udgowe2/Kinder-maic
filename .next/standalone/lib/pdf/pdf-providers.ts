@@ -138,7 +138,19 @@
  */
 
 import { extractText, getDocumentProxy, extractImages } from 'unpdf';
-import sharp from 'sharp';
+// sharp is loaded lazily so that a missing/wrong-platform binary does not crash the
+// entire module. Image extraction is skipped gracefully when sharp is unavailable.
+let sharpLoader: typeof import('sharp') | null | undefined = undefined; // undefined = not yet attempted
+async function getSharp() {
+  if (sharpLoader !== undefined) return sharpLoader;
+  try {
+    sharpLoader = (await import('sharp')).default as unknown as typeof import('sharp');
+  } catch {
+    log.warn('sharp module could not be loaded — PDF image extraction will be skipped');
+    sharpLoader = null;
+  }
+  return sharpLoader;
+}
 import type { PDFParserConfig } from './types';
 import type { ParsedPdfContent } from '@/lib/types/pdf';
 import { PDF_PROVIDERS } from './constants';
@@ -218,8 +230,13 @@ async function parseWithUnpdf(pdfBuffer: Buffer): Promise<ParsedPdfContent> {
       for (let i = 0; i < pageImages.length; i++) {
         const imgData = pageImages[i];
         try {
+          const sharpFn = await getSharp();
+          if (!sharpFn) {
+            // sharp not available (wrong platform binary) — skip image extraction
+            continue;
+          }
           // Use sharp to convert raw image data to PNG base64
-          const pngBuffer = await sharp(Buffer.from(imgData.data), {
+          const pngBuffer = await sharpFn(Buffer.from(imgData.data), {
             raw: {
               width: imgData.width,
               height: imgData.height,
