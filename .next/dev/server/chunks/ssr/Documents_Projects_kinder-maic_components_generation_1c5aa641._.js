@@ -808,6 +808,14 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
             models: config.isServerConfigured && !config.apiKey && config.serverModels?.length ? config.models.filter((m)=>new Set(config.serverModels).has(m.id)) : config.models
         })) : [];
     const currentProviderConfig = providersConfig?.[currentProviderId];
+    // Auto-select server-configured provider if none selected yet
+    const serverConfiguredProvider = providersConfig ? Object.entries(providersConfig).find(([_, cfg])=>cfg.isServerConfigured) : null;
+    const effectiveProviders = configuredProviders.length > 0 ? configuredProviders : serverConfiguredProvider ? [
+        {
+            id: serverConfiguredProvider[0],
+            ...serverConfiguredProvider[1]
+        }
+    ] : [];
     // PDF handler
     const handleFileSelect = (file)=>{
         if (file.type !== 'application/pdf') return;
@@ -825,8 +833,8 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "flex items-center gap-1 flex-wrap",
         children: [
-            configuredProviders.length > 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(ModelSelectorPopover, {
-                configuredProviders: configuredProviders,
+            effectiveProviders.length > 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(ModelSelectorPopover, {
+                configuredProviders: effectiveProviders,
                 currentProviderId: currentProviderId,
                 currentModelId: currentModelId,
                 currentProviderConfig: currentProviderConfig,
@@ -834,7 +842,7 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
                 t: t
             }, void 0, false, {
                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                lineNumber: 120,
+                lineNumber: 133,
                 columnNumber: 9
             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Tooltip"], {
                 children: [
@@ -848,45 +856,45 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
                                     className: "size-3.5"
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                    lineNumber: 139,
+                                    lineNumber: 152,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     children: t('toolbar.configureProvider')
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                    lineNumber: 140,
+                                    lineNumber: 153,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                            lineNumber: 131,
+                            lineNumber: 144,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                        lineNumber: 130,
+                        lineNumber: 143,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TooltipContent"], {
                         children: t('toolbar.configureProviderHint')
                     }, void 0, false, {
                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                        lineNumber: 143,
+                        lineNumber: 156,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                lineNumber: 129,
+                lineNumber: 142,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "w-px h-4 bg-border/60 mx-1"
             }, void 0, false, {
                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                lineNumber: 148,
+                lineNumber: 161,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$components$2f$ui$2f$popover$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Popover"], {
@@ -900,7 +908,7 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
                                     className: "size-3.5"
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                    lineNumber: 155,
+                                    lineNumber: 168,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -908,7 +916,7 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
                                     children: pdfFile.name
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                    lineNumber: 156,
+                                    lineNumber: 169,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -922,18 +930,18 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
                                         className: "size-2.5"
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                        lineNumber: 165,
+                                        lineNumber: 178,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                    lineNumber: 157,
+                                    lineNumber: 170,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                            lineNumber: 154,
+                            lineNumber: 167,
                             columnNumber: 13
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                             className: pillMuted,
@@ -941,17 +949,17 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
                                 className: "size-3.5"
                             }, void 0, false, {
                                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                lineNumber: 170,
+                                lineNumber: 183,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                            lineNumber: 169,
+                            lineNumber: 182,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                        lineNumber: 152,
+                        lineNumber: 165,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$components$2f$ui$2f$popover$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["PopoverContent"], {
@@ -966,7 +974,7 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
                                         children: t('toolbar.pdfParser')
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                        lineNumber: 177,
+                                        lineNumber: 190,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Select"], {
@@ -977,12 +985,12 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
                                                 className: "h-7 text-xs flex-1 min-w-0",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectValue"], {}, void 0, false, {
                                                     fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                                    lineNumber: 182,
+                                                    lineNumber: 195,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                                lineNumber: 181,
+                                                lineNumber: 194,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectContent"], {
@@ -1001,7 +1009,7 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
                                                                     className: "w-3.5 h-3.5"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                                                    lineNumber: 193,
+                                                                    lineNumber: 206,
                                                                     columnNumber: 27
                                                                 }, this),
                                                                 provider.name,
@@ -1010,36 +1018,36 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
                                                                     children: t('settings.serverConfigured')
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                                                    lineNumber: 197,
+                                                                    lineNumber: 210,
                                                                     columnNumber: 27
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                                            lineNumber: 191,
+                                                            lineNumber: 204,
                                                             columnNumber: 23
                                                         }, this)
                                                     }, provider.id, false, {
                                                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                                        lineNumber: 190,
+                                                        lineNumber: 203,
                                                         columnNumber: 21
                                                     }, this);
                                                 })
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                                lineNumber: 184,
+                                                lineNumber: 197,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                        lineNumber: 180,
+                                        lineNumber: 193,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                lineNumber: 176,
+                                lineNumber: 189,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1057,7 +1065,7 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                        lineNumber: 211,
+                                        lineNumber: 224,
                                         columnNumber: 13
                                     }, this),
                                     pdfFile ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1072,12 +1080,12 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
                                                             className: "size-4 text-violet-600 dark:text-violet-400"
                                                         }, void 0, false, {
                                                             fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                                            lineNumber: 226,
+                                                            lineNumber: 239,
                                                             columnNumber: 21
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                                        lineNumber: 225,
+                                                        lineNumber: 238,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1088,7 +1096,7 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
                                                                 children: pdfFile.name
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                                                lineNumber: 229,
+                                                                lineNumber: 242,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1099,19 +1107,19 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                                                lineNumber: 230,
+                                                                lineNumber: 243,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                                        lineNumber: 228,
+                                                        lineNumber: 241,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                                lineNumber: 224,
+                                                lineNumber: 237,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1120,13 +1128,13 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
                                                 children: t('toolbar.removePdf')
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                                lineNumber: 235,
+                                                lineNumber: 248,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                        lineNumber: 223,
+                                        lineNumber: 236,
                                         columnNumber: 15
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$lib$2f$utils$2f$cn$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])('flex flex-col items-center justify-center rounded-lg border-2 border-dashed p-4 transition-colors cursor-pointer', isDragging ? 'border-violet-400 bg-violet-50 dark:bg-violet-950/20' : 'border-muted-foreground/20 hover:border-violet-300'),
@@ -1147,7 +1155,7 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
                                                 className: "size-5 text-muted-foreground/50 mb-1.5"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                                lineNumber: 263,
+                                                lineNumber: 276,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1155,7 +1163,7 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
                                                 children: t('toolbar.pdfUpload')
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                                lineNumber: 264,
+                                                lineNumber: 277,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1163,31 +1171,31 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
                                                 children: t('upload.pdfSizeLimit')
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                                lineNumber: 265,
+                                                lineNumber: 278,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                        lineNumber: 243,
+                                        lineNumber: 256,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                lineNumber: 210,
+                                lineNumber: 223,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                        lineNumber: 174,
+                        lineNumber: 187,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                lineNumber: 151,
+                lineNumber: 164,
                 columnNumber: 7
             }, this),
             webSearchAvailable ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$components$2f$ui$2f$popover$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Popover"], {
@@ -1201,25 +1209,25 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
                                     className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$lib$2f$utils$2f$cn$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])('size-3.5', webSearch && 'animate-pulse')
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                    lineNumber: 279,
+                                    lineNumber: 292,
                                     columnNumber: 15
                                 }, this),
                                 webSearch && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     children: __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$lib$2f$web$2d$search$2f$constants$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WEB_SEARCH_PROVIDERS"][webSearchProviderId]?.name || 'Search'
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                    lineNumber: 281,
+                                    lineNumber: 294,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                            lineNumber: 278,
+                            lineNumber: 291,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                        lineNumber: 277,
+                        lineNumber: 290,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$components$2f$ui$2f$popover$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["PopoverContent"], {
@@ -1234,7 +1242,7 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
                                         className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$lib$2f$utils$2f$cn$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])('size-4 shrink-0', webSearch ? 'text-violet-600 dark:text-violet-400' : 'text-muted-foreground')
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                        lineNumber: 296,
+                                        lineNumber: 309,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1245,7 +1253,7 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
                                                 children: webSearch ? t('toolbar.webSearchOn') : t('toolbar.webSearchOff')
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                                lineNumber: 303,
+                                                lineNumber: 316,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1253,19 +1261,19 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
                                                 children: t('toolbar.webSearchDesc')
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                                lineNumber: 306,
+                                                lineNumber: 319,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                        lineNumber: 302,
+                                        lineNumber: 315,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                lineNumber: 287,
+                                lineNumber: 300,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1276,7 +1284,7 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
                                         children: t('toolbar.webSearchProvider')
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                        lineNumber: 314,
+                                        lineNumber: 327,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Select"], {
@@ -1287,12 +1295,12 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
                                                 className: "h-7 text-xs flex-1 min-w-0",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectValue"], {}, void 0, false, {
                                                     fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                                    lineNumber: 322,
+                                                    lineNumber: 335,
                                                     columnNumber: 19
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                                lineNumber: 321,
+                                                lineNumber: 334,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectContent"], {
@@ -1311,48 +1319,48 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
                                                                     children: t('settings.serverConfigured')
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                                                    lineNumber: 336,
+                                                                    lineNumber: 349,
                                                                     columnNumber: 29
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                                            lineNumber: 331,
+                                                            lineNumber: 344,
                                                             columnNumber: 25
                                                         }, this)
                                                     }, provider.id, false, {
                                                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                                        lineNumber: 330,
+                                                        lineNumber: 343,
                                                         columnNumber: 23
                                                     }, this);
                                                 })
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                                lineNumber: 324,
+                                                lineNumber: 337,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                        lineNumber: 317,
+                                        lineNumber: 330,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                lineNumber: 313,
+                                lineNumber: 326,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                        lineNumber: 285,
+                        lineNumber: 298,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                lineNumber: 276,
+                lineNumber: 289,
                 columnNumber: 9
             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Tooltip"], {
                 children: [
@@ -1365,30 +1373,30 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
                                 className: "size-3.5"
                             }, void 0, false, {
                                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                lineNumber: 353,
+                                lineNumber: 366,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                            lineNumber: 352,
+                            lineNumber: 365,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                        lineNumber: 351,
+                        lineNumber: 364,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TooltipContent"], {
                         children: t('toolbar.webSearchNoProvider')
                     }, void 0, false, {
                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                        lineNumber: 356,
+                        lineNumber: 369,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                lineNumber: 350,
+                lineNumber: 363,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Tooltip"], {
@@ -1403,58 +1411,58 @@ function GenerationToolbar({ language, onLanguageChange, webSearch, onWebSearchC
                                     className: "size-3.5"
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                    lineNumber: 367,
+                                    lineNumber: 380,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     children: language === 'zh-CN' ? '中文' : 'EN'
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                    lineNumber: 368,
+                                    lineNumber: 381,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                            lineNumber: 363,
+                            lineNumber: 376,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                        lineNumber: 362,
+                        lineNumber: 375,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TooltipContent"], {
                         children: t('toolbar.languageHint')
                     }, void 0, false, {
                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                        lineNumber: 371,
+                        lineNumber: 384,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                lineNumber: 361,
+                lineNumber: 374,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "w-px h-4 bg-border/60 mx-1"
             }, void 0, false, {
                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                lineNumber: 375,
+                lineNumber: 388,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$components$2f$generation$2f$media$2d$popover$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MediaPopover"], {
                 onSettingsOpen: onSettingsOpen
             }, void 0, false, {
                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                lineNumber: 378,
+                lineNumber: 391,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-        lineNumber: 117,
+        lineNumber: 130,
         columnNumber: 5
     }, this);
 }
@@ -1487,41 +1495,41 @@ function ModelSelectorPopover({ configuredProviders, currentProviderId, currentM
                                     className: "size-4 rounded-sm"
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                    lineNumber: 436,
+                                    lineNumber: 449,
                                     columnNumber: 17
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$lucide$2d$react$40$0$2e$562$2e$0_react$40$19$2e$2$2e$3$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bot$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Bot$3e$__["Bot"], {
                                     className: "size-3.5 text-muted-foreground"
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                    lineNumber: 442,
+                                    lineNumber: 455,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                lineNumber: 427,
+                                lineNumber: 440,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                            lineNumber: 426,
+                            lineNumber: 439,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                        lineNumber: 425,
+                        lineNumber: 438,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$components$2f$ui$2f$tooltip$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TooltipContent"], {
                         children: currentModelId ? `${currentProviderConfig?.name || currentProviderId} / ${currentModelId}` : t('settings.selectModel')
                     }, void 0, false, {
                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                        lineNumber: 447,
+                        lineNumber: 460,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                lineNumber: 424,
+                lineNumber: 437,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$components$2f$ui$2f$popover$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["PopoverContent"], {
@@ -1538,12 +1546,12 @@ function ModelSelectorPopover({ configuredProviders, currentProviderId, currentM
                                     children: t('toolbar.selectProvider')
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                    lineNumber: 459,
+                                    lineNumber: 472,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                lineNumber: 458,
+                                lineNumber: 471,
                                 columnNumber: 13
                             }, this),
                             configuredProviders.map((provider)=>{
@@ -1558,13 +1566,13 @@ function ModelSelectorPopover({ configuredProviders, currentProviderId, currentM
                                             className: "size-5 rounded-sm shrink-0"
                                         }, void 0, false, {
                                             fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                            lineNumber: 475,
+                                            lineNumber: 488,
                                             columnNumber: 21
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$lucide$2d$react$40$0$2e$562$2e$0_react$40$19$2e$2$2e$3$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bot$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Bot$3e$__["Bot"], {
                                             className: "size-5 text-muted-foreground shrink-0"
                                         }, void 0, false, {
                                             fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                            lineNumber: 481,
+                                            lineNumber: 494,
                                             columnNumber: 21
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1575,7 +1583,7 @@ function ModelSelectorPopover({ configuredProviders, currentProviderId, currentM
                                                     children: provider.name
                                                 }, void 0, false, {
                                                     fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                                    lineNumber: 484,
+                                                    lineNumber: 497,
                                                     columnNumber: 21
                                                 }, this),
                                                 provider.isServerConfigured && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1583,13 +1591,13 @@ function ModelSelectorPopover({ configuredProviders, currentProviderId, currentM
                                                     children: t('settings.serverConfigured')
                                                 }, void 0, false, {
                                                     fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                                    lineNumber: 486,
+                                                    lineNumber: 499,
                                                     columnNumber: 23
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                            lineNumber: 483,
+                                            lineNumber: 496,
                                             columnNumber: 19
                                         }, this),
                                         isActive && currentModelId && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1597,20 +1605,20 @@ function ModelSelectorPopover({ configuredProviders, currentProviderId, currentM
                                             children: currentModelId
                                         }, void 0, false, {
                                             fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                            lineNumber: 492,
+                                            lineNumber: 505,
                                             columnNumber: 21
                                         }, this)
                                     ]
                                 }, provider.id, true, {
                                     fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                    lineNumber: 466,
+                                    lineNumber: 479,
                                     columnNumber: 17
                                 }, this);
                             })
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                        lineNumber: 457,
+                        lineNumber: 470,
                         columnNumber: 11
                     }, this),
                     drillProvider && activeProvider && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1624,7 +1632,7 @@ function ModelSelectorPopover({ configuredProviders, currentProviderId, currentM
                                         className: "size-3.5 text-muted-foreground"
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                        lineNumber: 510,
+                                        lineNumber: 523,
                                         columnNumber: 15
                                     }, this),
                                     activeProvider.icon ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
@@ -1633,13 +1641,13 @@ function ModelSelectorPopover({ configuredProviders, currentProviderId, currentM
                                         className: "size-4 rounded-sm"
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                        lineNumber: 512,
+                                        lineNumber: 525,
                                         columnNumber: 17
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$lucide$2d$react$40$0$2e$562$2e$0_react$40$19$2e$2$2e$3$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bot$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Bot$3e$__["Bot"], {
                                         className: "size-4 text-muted-foreground"
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                        lineNumber: 518,
+                                        lineNumber: 531,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1647,7 +1655,7 @@ function ModelSelectorPopover({ configuredProviders, currentProviderId, currentM
                                         children: activeProvider.name
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                        lineNumber: 520,
+                                        lineNumber: 533,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1659,13 +1667,13 @@ function ModelSelectorPopover({ configuredProviders, currentProviderId, currentM
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                        lineNumber: 521,
+                                        lineNumber: 534,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                lineNumber: 506,
+                                lineNumber: 519,
                                 columnNumber: 13
                             }, this),
                             activeProvider.models.map((model)=>{
@@ -1682,39 +1690,39 @@ function ModelSelectorPopover({ configuredProviders, currentProviderId, currentM
                                             children: model.name
                                         }, void 0, false, {
                                             fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                            lineNumber: 542,
+                                            lineNumber: 555,
                                             columnNumber: 19
                                         }, this),
                                         isSelected && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$lucide$2d$react$40$0$2e$562$2e$0_react$40$19$2e$2$2e$3$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
                                             className: "size-3.5 shrink-0 text-violet-600 dark:text-violet-400"
                                         }, void 0, false, {
                                             fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                            lineNumber: 544,
+                                            lineNumber: 557,
                                             columnNumber: 21
                                         }, this)
                                     ]
                                 }, model.id, true, {
                                     fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                                    lineNumber: 529,
+                                    lineNumber: 542,
                                     columnNumber: 17
                                 }, this);
                             })
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                        lineNumber: 504,
+                        lineNumber: 517,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-                lineNumber: 454,
+                lineNumber: 467,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/Documents/Projects/kinder-maic/components/generation/generation-toolbar.tsx",
-        lineNumber: 417,
+        lineNumber: 430,
         columnNumber: 5
     }, this);
 }

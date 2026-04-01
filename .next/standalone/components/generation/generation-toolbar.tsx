@@ -96,6 +96,19 @@ export function GenerationToolbar({
 
   const currentProviderConfig = providersConfig?.[currentProviderId];
 
+  // Auto-select server-configured provider if none selected yet
+  const serverConfiguredProvider = providersConfig 
+    ? Object.entries(providersConfig).find(([_, cfg]) => cfg.isServerConfigured)
+    : null;
+  const effectiveProviders = configuredProviders.length > 0 
+    ? configuredProviders 
+    : serverConfiguredProvider 
+      ? [{
+          id: serverConfiguredProvider[0] as ProviderId,
+          ...serverConfiguredProvider[1],
+        }]
+      : [];
+
   // PDF handler
   const handleFileSelect = (file: File) => {
     if (file.type !== 'application/pdf') return;
@@ -116,9 +129,9 @@ export function GenerationToolbar({
   return (
     <div className="flex items-center gap-1 flex-wrap">
       {/* ── Model selector ── */}
-      {configuredProviders.length > 0 ? (
+      {effectiveProviders.length > 0 ? (
         <ModelSelectorPopover
-          configuredProviders={configuredProviders}
+          configuredProviders={effectiveProviders}
           currentProviderId={currentProviderId}
           currentModelId={currentModelId}
           currentProviderConfig={currentProviderConfig}
