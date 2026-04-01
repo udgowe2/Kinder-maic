@@ -202,66 +202,66 @@ const LEHRPLAN_SUBJECTS = [
         id: 'mathematik',
         name: 'Mathematik',
         emoji: '🔢',
-        zyklus2: 'lehrplan-pdfs/zyklus-2/mathematik-z2.pdf',
-        zyklus3: 'lehrplan-pdfs/zyklus-3/mathematik-z3.pdf'
+        zyklus2: '/lehrplan-pdfs/zyklus-2/mathematik-z2.pdf',
+        zyklus3: '/lehrplan-pdfs/zyklus-3/mathematik-z3.pdf'
     },
     {
         id: 'deutsch',
         name: 'Deutsch',
         emoji: '📖',
-        zyklus2: 'lehrplan-pdfs/zyklus-2/deutsch-z2.pdf',
-        zyklus3: 'lehrplan-pdfs/zyklus-3/deutsch-z3.pdf'
+        zyklus2: '/lehrplan-pdfs/zyklus-2/deutsch-z2.pdf',
+        zyklus3: '/lehrplan-pdfs/zyklus-3/deutsch-z3.pdf'
     },
     {
         id: 'englisch',
         name: 'Englisch',
         emoji: '🇬🇧',
-        zyklus2: 'lehrplan-pdfs/zyklus-2/englisch-z2.pdf',
-        zyklus3: 'lehrplan-pdfs/zyklus-3/englisch-z3.pdf'
+        zyklus2: '/lehrplan-pdfs/zyklus-2/englisch-z2.pdf',
+        zyklus3: '/lehrplan-pdfs/zyklus-3/englisch-z3.pdf'
     },
     {
         id: 'franzoesisch',
         name: 'Französisch',
         emoji: '🇫🇷',
-        zyklus2: 'lehrplan-pdfs/zyklus-2/franzoesisch-z2.pdf',
-        zyklus3: 'lehrplan-pdfs/zyklus-3/franzoesisch-z3.pdf'
+        zyklus2: '/lehrplan-pdfs/zyklus-2/franzoesisch-z2.pdf',
+        zyklus3: '/lehrplan-pdfs/zyklus-3/franzoesisch-z3.pdf'
     },
     {
         id: 'nmg',
         name: 'Natur, Mensch, Gesellschaft',
         emoji: '🌍',
-        zyklus2: 'lehrplan-pdfs/zyklus-2/nmg-z2.pdf'
+        zyklus2: '/lehrplan-pdfs/zyklus-2/nmg-z2.pdf'
     },
     {
         id: 'medien-informatik',
         name: 'Medien & Informatik',
         emoji: '💻',
-        zyklus2: 'lehrplan-pdfs/module/medien-informatik.pdf',
-        zyklus3: 'lehrplan-pdfs/module/medien-informatik.pdf'
+        zyklus2: '/lehrplan-pdfs/module/medien-informatik.pdf',
+        zyklus3: '/lehrplan-pdfs/module/medien-informatik.pdf'
     },
     {
         id: 'natur-technik',
         name: 'Natur & Technik',
         emoji: '🔬',
-        zyklus3: 'lehrplan-pdfs/zyklus-3/natur-technik-z3.pdf'
+        zyklus3: '/lehrplan-pdfs/zyklus-3/natur-technik-z3.pdf'
     },
     {
         id: 'geschichte-geografie',
         name: 'Geschichte & Geografie',
         emoji: '🗺️',
-        zyklus3: 'lehrplan-pdfs/zyklus-3/rzg-z3.pdf'
+        zyklus3: '/lehrplan-pdfs/zyklus-3/rzg-z3.pdf'
     },
     {
         id: 'rke',
         name: 'Religionen & Kulturen',
         emoji: '🕌',
-        zyklus3: 'lehrplan-pdfs/zyklus-3/rke-z3.pdf'
+        zyklus3: '/lehrplan-pdfs/zyklus-3/rke-z3.pdf'
     },
     {
         id: 'wah',
         name: 'Wirtschaft, Arbeit, Haushalt',
         emoji: '🏠',
-        zyklus3: 'lehrplan-pdfs/zyklus-3/wah-z3.pdf'
+        zyklus3: '/lehrplan-pdfs/zyklus-3/wah-z3.pdf'
     }
 ];
 function getPdfForSubject(subjectId, age) {

@@ -22,6 +22,8 @@ RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
 COPY --chown=nextjs:nodejs public ./public
+# Copy Lehrplan 21 PDFs (also in public/lehrplan-pdfs but explicit for clarity)
+COPY --chown=nextjs:nodejs lehrplan-pdfs ./public/lehrplan-pdfs
 COPY --chown=nextjs:nodejs .next/standalone ./
 COPY --chown=nextjs:nodejs .next/static ./.next/static
 
