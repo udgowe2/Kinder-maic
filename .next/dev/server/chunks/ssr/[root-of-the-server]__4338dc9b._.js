@@ -4006,6 +4006,48 @@ const TTS_PROVIDERS = {
             default: 1.0
         }
     },
+    'google-tts': {
+        id: 'google-tts',
+        name: 'Google Cloud TTS',
+        requiresApiKey: true,
+        defaultBaseUrl: 'https://texttospeech.googleapis.com/v1',
+        icon: '/logos/google.svg',
+        voices: [
+            {
+                id: 'de-DE-Neural2-B',
+                name: 'Professor Eule / Narrator (Male)',
+                language: 'de-DE',
+                gender: 'male'
+            },
+            {
+                id: 'de-DE-Neural2-C',
+                name: 'Lena (Female)',
+                language: 'de-DE',
+                gender: 'female'
+            },
+            {
+                id: 'de-DE-Neural2-D',
+                name: 'Max (Male)',
+                language: 'de-DE',
+                gender: 'male'
+            },
+            // Keep a female narrator fallback just in case
+            {
+                id: 'de-DE-Neural2-F',
+                name: 'Narrator (Female)',
+                language: 'de-DE',
+                gender: 'female'
+            }
+        ],
+        supportedFormats: [
+            'mp3'
+        ],
+        speedRange: {
+            min: 0.25,
+            max: 4.0,
+            default: 0.95
+        }
+    },
     'azure-tts': {
         id: 'azure-tts',
         name: 'Azure TTS',
@@ -4911,6 +4953,7 @@ const DEFAULT_TTS_VOICES = {
     'glm-tts': 'tongtong',
     'qwen-tts': 'Cherry',
     'doubao-tts': 'zh_female_vv_uranus_bigtts',
+    'google-tts': 'de-DE-Neural2-B',
     'elevenlabs-tts': 'EXAVITQu4vr4xnSDxMaL',
     'browser-native-tts': 'default'
 };
@@ -7456,7 +7499,7 @@ const useSettingsStore = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Doc
                         // TTS: select first server provider if current is not server-configured
                         const serverTtsIds = Object.keys(data.tts);
                         if (serverTtsIds.length > 0 && !newTTSConfig[state.ttsProviderId]?.isServerConfigured) {
-                            autoTtsProvider = serverTtsIds[0];
+                            autoTtsProvider = serverTtsIds.includes('google-tts') ? 'google-tts' : serverTtsIds[0];
                             autoTtsVoice = __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$lib$2f$audio$2f$constants$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DEFAULT_TTS_VOICES"][autoTtsProvider] || 'default';
                         }
                         // ASR: select first server provider if current is not server-configured

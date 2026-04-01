@@ -1035,7 +1035,7 @@ export const useSettingsStore = create<SettingsState>()(
                   serverTtsIds.length > 0 &&
                   !newTTSConfig[state.ttsProviderId]?.isServerConfigured
                 ) {
-                  autoTtsProvider = serverTtsIds[0];
+                  autoTtsProvider = serverTtsIds.includes('google-tts') ? 'google-tts' : serverTtsIds[0];
                   autoTtsVoice = DEFAULT_TTS_VOICES[autoTtsProvider] || 'default';
                 }
 

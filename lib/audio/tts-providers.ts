@@ -140,6 +140,9 @@ export async function generateTTS(
     case 'openai-tts':
       return await generateOpenAITTS(config, text);
 
+    case 'google-tts':
+      return await generateGoogleTTS(config, text);
+
     case 'azure-tts':
       return await generateAzureTTS(config, text);
 
@@ -199,6 +202,72 @@ async function generateOpenAITTS(
     audio: new Uint8Array(arrayBuffer),
     format: 'mp3',
   };
+}
+
+/**
+ * Google Cloud TTS implementation (with file caching)
+ */
+async function generateGoogleTTS(config: TTSModelConfig, text: string): Promise<TTSGenerationResult> {
+  const baseUrl = config.baseUrl || TTS_PROVIDERS['google-tts'].defaultBaseUrl;
+
+  // Dynamic imports for filesystem and hashing to ensure this module remains runtime-agnostic
+  const fs = await import('fs/promises');
+  const path = await import('path');
+  const crypto = await import('crypto');
+
+  // Create deterministic cache key
+  const cacheKey = crypto
+    .createHash('sha256')
+    .update(`${text}|${config.voice}|${config.speed ?? 0.95}`)
+    .digest('hex');
+  
+  const cacheDir = path.join(process.cwd(), 'data', 'tts-cache');
+  const cacheFile = path.join(cacheDir, `${cacheKey}.mp3`);
+
+  // Try to serve from cache first
+  try {
+    const cachedData = await fs.readFile(cacheFile);
+    return { audio: new Uint8Array(cachedData), format: 'mp3' };
+  } catch {
+    // Cache miss, proceed to generate
+  }
+
+  // Generate via API
+  const response = await fetch(`${baseUrl}/text:synthesize?key=${config.apiKey}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      input: { text },
+      voice: { languageCode: 'de-DE', name: config.voice },
+      audioConfig: {
+        audioEncoding: 'MP3',
+        speakingRate: config.speed ?? 0.95,
+        pitch: 0.0,
+      },
+    }),
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text().catch(() => response.statusText);
+    throw new Error(`Google Cloud TTS API error: ${errorText}`);
+  }
+
+  const data = await response.json();
+  if (!data.audioContent) {
+    throw new Error('Google Cloud TTS returned no audio content');
+  }
+
+  // The API returns base64 string
+  const audioBuffer = Buffer.from(data.audioContent, 'base64');
+
+  // Asynchronously save to cache
+  fs.mkdir(cacheDir, { recursive: true })
+    .then(() => fs.writeFile(cacheFile, audioBuffer))
+    .catch((err) => console.error('Failed to write Google TTS cache:', err));
+
+  return { audio: new Uint8Array(audioBuffer), format: 'mp3' };
 }
 
 /**

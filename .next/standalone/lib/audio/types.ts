@@ -84,6 +84,7 @@ export type TTSProviderId =
   | 'glm-tts'
   | 'qwen-tts'
   | 'doubao-tts'
+  | 'google-tts'
   | 'elevenlabs-tts'
   | 'browser-native-tts';
 // Add new TTS providers below (uncomment and modify):

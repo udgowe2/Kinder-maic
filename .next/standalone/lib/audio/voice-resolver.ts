@@ -29,6 +29,15 @@ export function resolveAgentVoice(
     }
   }
 
+  // Hardcode assignment for Google Cloud TTS Neural 2 if available
+  const hasGoogleProvider = availableProviders.find(p => p.providerId === 'google-tts');
+  if (hasGoogleProvider) {
+    if (agent.role === 'teacher') return { providerId: 'google-tts', voiceId: 'de-DE-Neural2-B' };
+    if (agent.name.toLowerCase().includes('lena')) return { providerId: 'google-tts', voiceId: 'de-DE-Neural2-C' };
+    if (agent.name.toLowerCase().includes('max')) return { providerId: 'google-tts', voiceId: 'de-DE-Neural2-D' };
+    return { providerId: 'google-tts', voiceId: 'de-DE-Neural2-B' };
+  }
+
   // Fallback: first available provider, deterministic voice
   if (availableProviders.length > 0) {
     const first = availableProviders[0];

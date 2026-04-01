@@ -169,6 +169,7 @@ const LLM_ENV_MAP = {
     GROK: 'grok'
 };
 const TTS_ENV_MAP = {
+    GOOGLE_TTS: 'google-tts',
     TTS_OPENAI: 'openai-tts',
     TTS_AZURE: 'azure-tts',
     TTS_GLM: 'glm-tts',
