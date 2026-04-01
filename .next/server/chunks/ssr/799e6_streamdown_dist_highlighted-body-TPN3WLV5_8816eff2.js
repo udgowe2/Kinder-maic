@@ -1,3 +1,0 @@
-module.exports=[564798,a=>{"use strict";var b=a.i(975713),c=a.i(228918),d=a.i(638482),e=({code:a,language:e,raw:f,className:g,startLine:h,...i})=>{let{shikiTheme:j}=(0,c.useContext)(b.A),k=(0,b.f)(),[l,m]=(0,c.useState)(f);return(0,c.useEffect)(()=>{if(!k)return void m(f);let b=k.highlight({code:a,language:e,themes:j},a=>{m(a)});b&&m(b)},[a,e,j,k,f]),(0,d.jsx)(b.c,{className:g,language:e,result:l,startLine:h,...i})};a.s(["HighlightedCodeBlockBody",()=>e])}];
-
-//# sourceMappingURL=799e6_streamdown_dist_highlighted-body-TPN3WLV5_8816eff2.js.map

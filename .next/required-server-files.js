@@ -142,7 +142,7 @@ self.__SERVER_FILES_MANIFEST={
     }
   },
   "appDir": "/Users/abubakaribrahimmoalin/Documents/Projects/kinder-maic",
-  "relativeAppDir": "Documents/Projects/kinder-maic",
+  "relativeAppDir": "",
   "files": [
     ".next/routes-manifest.json",
     ".next/server/pages-manifest.json",

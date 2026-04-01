@@ -1,0 +1,33 @@
+(globalThis.TURBOPACK_CHUNK_LISTS || (globalThis.TURBOPACK_CHUNK_LISTS = [])).push({
+    script: typeof document === "object" ? document.currentScript : undefined,
+    chunks: [
+  "static/chunks/Documents_Projects_kinder-maic_lib_740a435c._.js",
+  "static/chunks/Documents_Projects_kinder-maic_lib_d8bf6157._.js",
+  "static/chunks/Documents_Projects_kinder-maic_app_1f3e7ef1._.js",
+  "static/chunks/Documents_Projects_kinder-maic_components_ui_66dbb9ae._.js",
+  "static/chunks/Documents_Projects_kinder-maic_components_settings_b558cc6a._.js",
+  "static/chunks/Documents_Projects_kinder-maic_components_generation_cd387344._.js",
+  "static/chunks/Documents_Projects_kinder-maic_components_agent_agent-bar_tsx_5c96a84e._.js",
+  "static/chunks/Documents_Projects_kinder-maic_components_slide-renderer_components_bc18a419._.js",
+  "static/chunks/Documents_Projects_kinder-maic_components_audio_speech-button_tsx_277a9469._.js",
+  "static/chunks/Documents_Projects_kinder-maic_configs_image-clip_ts_fc025529._.js",
+  "static/chunks/77ad6_motion-dom_dist_es_dee40aa0._.js",
+  "static/chunks/e1ada_framer-motion_dist_es_d747c428._.js",
+  "static/chunks/cb98e_lucide-react_dist_esm_icons_7b62fef8._.js",
+  "static/chunks/c7a33_tailwind-merge_dist_bundle-mjs_mjs_33d8218c._.js",
+  "static/chunks/b1a6a_dexie_d0bfdd6d._.js",
+  "static/chunks/fe744_@radix-ui_react-select_dist_index_mjs_a67009a9._.js",
+  "static/chunks/0c2bc_zrender_lib_0837f928._.js",
+  "static/chunks/b0791_echarts_lib_util_608ae4fb._.js",
+  "static/chunks/b0791_echarts_lib_model_f868986e._.js",
+  "static/chunks/b0791_echarts_lib_core_3a0fc8db._.js",
+  "static/chunks/b0791_echarts_lib_scale_26eb7a80._.js",
+  "static/chunks/b0791_echarts_lib_data_4b8d322e._.js",
+  "static/chunks/b0791_echarts_lib_component_9093648b._.js",
+  "static/chunks/b0791_echarts_lib_chart_c67ad2ad._.js",
+  "static/chunks/b0791_echarts_lib_coord_91ebb0a2._.js",
+  "static/chunks/b0791_echarts_lib_0b9aab70._.js",
+  "static/chunks/65942__pnpm_49db4a87._.js"
+],
+    source: "dynamic"
+});

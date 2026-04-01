@@ -1,0 +1,8 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/profiles/route": "app/api/profiles/route.js",
+  "/api/server-providers/route": "app/api/server-providers/route.js",
+  "/api/verify-model/route": "app/api/verify-model/route.js",
+  "/eltern/page": "app/eltern/page.js",
+  "/page": "app/page.js"
+}
