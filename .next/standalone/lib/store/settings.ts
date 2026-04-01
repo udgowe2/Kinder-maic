@@ -1077,21 +1077,37 @@ export const useSettingsStore = create<SettingsState>()(
                 }
               }
 
-              // LLM auto-select: only on true first load (no provider selected yet)
+              // LLM auto-select: fire when no usable provider is currently active
+              // (covers first visit where providerId defaults to 'openai' with no key)
+              const PREFERRED_MODEL = 'gemini-2.5-flash';
+              const currentProviderIsUsable =
+                newProvidersConfig[state.providerId]?.isServerConfigured ||
+                !!newProvidersConfig[state.providerId]?.apiKey;
               let autoProviderId: ProviderId | undefined;
               let autoModelId: string | undefined;
-              if (!state.providerId && !state.modelId) {
-                for (const [pid, cfg] of Object.entries(newProvidersConfig)) {
-                  if (cfg.isServerConfigured) {
-                    // Prefer server-restricted models, fall back to built-in list
-                    const serverModels = cfg.serverModels;
-                    const modelId = serverModels?.length
-                      ? serverModels[0]
-                      : PROVIDERS[pid as ProviderId]?.models[0]?.id;
-                    if (modelId) {
-                      autoProviderId = pid as ProviderId;
-                      autoModelId = modelId;
-                      break;
+              if (!currentProviderIsUsable || !state.modelId) {
+                // First preference: google (Gemini) if server-configured
+                const googleCfg = newProvidersConfig['google' as ProviderId];
+                if (googleCfg?.isServerConfigured) {
+                  autoProviderId = 'google' as ProviderId;
+                  // Pick preferred model if available, otherwise first model
+                  const available = googleCfg.models.map(m => m.id);
+                  autoModelId = available.includes(PREFERRED_MODEL)
+                    ? PREFERRED_MODEL
+                    : googleCfg.serverModels?.[0] ?? googleCfg.models[0]?.id;
+                } else {
+                  // Fall back to first server-configured provider
+                  for (const [pid, cfg] of Object.entries(newProvidersConfig)) {
+                    if (cfg.isServerConfigured) {
+                      const serverModels = cfg.serverModels;
+                      const modelId = serverModels?.length
+                        ? serverModels[0]
+                        : PROVIDERS[pid as ProviderId]?.models[0]?.id;
+                      if (modelId) {
+                        autoProviderId = pid as ProviderId;
+                        autoModelId = modelId;
+                        break;
+                      }
                     }
                   }
                 }

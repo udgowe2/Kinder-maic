@@ -7530,19 +7530,31 @@ const useSettingsStore = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Doc
                             autoVideoEnabled = true;
                         }
                     }
-                    // LLM auto-select: only on true first load (no provider selected yet)
+                    // LLM auto-select: fire when no usable provider is currently active
+                    // (covers first visit where providerId defaults to 'openai' with no key)
+                    const PREFERRED_MODEL = 'gemini-2.5-flash';
+                    const currentProviderIsUsable = newProvidersConfig[state.providerId]?.isServerConfigured || !!newProvidersConfig[state.providerId]?.apiKey;
                     let autoProviderId;
                     let autoModelId;
-                    if (!state.providerId && !state.modelId) {
-                        for (const [pid, cfg] of Object.entries(newProvidersConfig)){
-                            if (cfg.isServerConfigured) {
-                                // Prefer server-restricted models, fall back to built-in list
-                                const serverModels = cfg.serverModels;
-                                const modelId = serverModels?.length ? serverModels[0] : __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$lib$2f$ai$2f$providers$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PROVIDERS"][pid]?.models[0]?.id;
-                                if (modelId) {
-                                    autoProviderId = pid;
-                                    autoModelId = modelId;
-                                    break;
+                    if (!currentProviderIsUsable || !state.modelId) {
+                        // First preference: google (Gemini) if server-configured
+                        const googleCfg = newProvidersConfig['google'];
+                        if (googleCfg?.isServerConfigured) {
+                            autoProviderId = 'google';
+                            // Pick preferred model if available, otherwise first model
+                            const available = googleCfg.models.map((m)=>m.id);
+                            autoModelId = available.includes(PREFERRED_MODEL) ? PREFERRED_MODEL : googleCfg.serverModels?.[0] ?? googleCfg.models[0]?.id;
+                        } else {
+                            // Fall back to first server-configured provider
+                            for (const [pid, cfg] of Object.entries(newProvidersConfig)){
+                                if (cfg.isServerConfigured) {
+                                    const serverModels = cfg.serverModels;
+                                    const modelId = serverModels?.length ? serverModels[0] : __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$lib$2f$ai$2f$providers$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PROVIDERS"][pid]?.models[0]?.id;
+                                    if (modelId) {
+                                        autoProviderId = pid;
+                                        autoModelId = modelId;
+                                        break;
+                                    }
                                 }
                             }
                         }
@@ -7772,6 +7784,10 @@ function ServerProvidersInit() {
     }["ServerProvidersInit.useSettingsStore[fetchServerProviders]"]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$2_$40$babel$2b$core$40$7$2e$29$2e$0_$40$opentelemetry$2b$api$40$1$2e$9$2e$0_$40$playwright$2b$test$40$1$2e$58$2e$2_react$2d$d_73d26e8a224c7af85a4dde0601bbbcd7$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "ServerProvidersInit.useEffect": ()=>{
+            // Reset the guard so fetchServerProviders always re-evaluates auto-select
+            __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Projects$2f$kinder$2d$maic$2f$lib$2f$store$2f$settings$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSettingsStore"].setState({
+                autoConfigApplied: false
+            });
             fetchServerProviders();
         }
     }["ServerProvidersInit.useEffect"], [

@@ -246,3 +246,6 @@ Please retry in 46.513454477s.
     at async requestHandlerImpl (/Users/abubakaribrahimmoalin/Documents/Projects/kinder-maic/node_modules/.pnpm/next@16.1.2_@babel+core@7.29.0_@opentelemetry+api@1.9.0_@playwright+test@1.58.2_react-d_73d26e8a224c7af85a4dde0601bbbcd7/node_modules/next/dist/server/lib/router-server.js:496:13)
     at async Server.requestListener (/Users/abubakaribrahimmoalin/Documents/Projects/kinder-maic/node_modules/.pnpm/next@16.1.2_@babel+core@7.29.0_@opentelemetry+api@1.9.0_@playwright+test@1.58.2_react-d_73d26e8a224c7af85a4dde0601bbbcd7/node_modules/next/dist/server/lib/start-server.js:226:13)
 [21:08:03.644] Server  LOG     ✓ Compiled in 1195ms
+[21:10:22.726] Server  LOG     ✓ Compiled in 513ms
+[21:14:06.668] Server  LOG     ✓ Compiled in 672ms
+[21:14:50.161] Server  LOG     ✓ Compiled in 597ms
